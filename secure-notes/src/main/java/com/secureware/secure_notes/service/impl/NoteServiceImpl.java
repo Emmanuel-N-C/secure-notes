@@ -6,7 +6,6 @@ import com.secureware.secure_notes.entity.Note;
 import com.secureware.secure_notes.repository.NoteRepository;
 import com.secureware.secure_notes.service.EncryptionService;
 import com.secureware.secure_notes.service.NoteService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,11 +13,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class NoteServiceImpl implements NoteService {
 
     private final NoteRepository noteRepository;
     private final EncryptionService encryptionService;
+
+    // Explicit constructor instead of @RequiredArgsConstructor
+    public NoteServiceImpl(NoteRepository noteRepository, EncryptionService encryptionService) {
+        this.noteRepository = noteRepository;
+        this.encryptionService = encryptionService;
+    }
 
     @Override
     @Transactional

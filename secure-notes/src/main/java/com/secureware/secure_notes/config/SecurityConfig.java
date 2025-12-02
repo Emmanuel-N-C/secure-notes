@@ -2,7 +2,6 @@ package com.secureware.secure_notes.config;
 
 import com.secureware.secure_notes.security.TokenAuthEntryPoint;
 import com.secureware.secure_notes.security.TokenAuthFilter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,11 +12,16 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfig {
 
     private final TokenAuthFilter tokenAuthFilter;
     private final TokenAuthEntryPoint tokenAuthEntryPoint;
+
+    // Explicit constructor instead of @RequiredArgsConstructor
+    public SecurityConfig(TokenAuthFilter tokenAuthFilter, TokenAuthEntryPoint tokenAuthEntryPoint) {
+        this.tokenAuthFilter = tokenAuthFilter;
+        this.tokenAuthEntryPoint = tokenAuthEntryPoint;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
