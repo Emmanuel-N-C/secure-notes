@@ -3,3 +3,13 @@
 *.iws
 *.iml
 *.ipr
+
+### Secret ###
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.jks
+*.keystore
+secrets/
